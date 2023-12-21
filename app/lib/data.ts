@@ -152,6 +152,9 @@ export async function fetchInvoicesPages(query: string) {
 }
 
 export async function fetchInvoiceById(id: string) {
+  noStore();
+  // 여기서 id가 다를 시 404 페이지로 이동해야하지만 id가 다를 경우 catch로 바로 이동해서
+  // 404에러가 아닌 다른 에러가 뜨게 된다.
   try {
     const data = await sql<InvoiceForm>`
       SELECT
